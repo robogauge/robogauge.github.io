@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Toward Reliable Sim-to-Real Predictability for Mixture of Experts-based Quadrupedal Locomotion">
+  <meta name="keywords" content="RoboGauge, MoE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toward Reliable Sim-to-Real Predictability for Mixture of Experts-based Quadrupedal Locomotion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/go2.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-widescreen">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Toward Reliable Sim-to-Real Predictability for Mixture of
+              Experts-based Quadrupedal Locomotion</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><b>Anonymous</b></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/wty-yy/go2_rl_gym"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Train Code</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/wty-yy/RoboGauge"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Evaluate Code</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 仿 ASAP 的视频展示区 Start -->
+  <section class="section">
+    <div class="container is-widescreen">
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-2">Indoor</h2>
+          <div class="content has-text-justified">
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Slope</h3>
+          <div class="content has-text-centered">
+            <video id="Slope-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Slope.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Stairs</h3>
+          <div class="content has-text-centered">
+            <video id="Stairs-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Stairs.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">4m/s Running</h3>
+          <div class="content has-text-centered">
+            <video id="Running-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/4ms Running.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Drop Recovery</h3>
+          <div class="content has-text-centered">
+            <video id="Drop Recovery-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Drop Recovery.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-widescreen">
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-2">Outdoor</h2>
+          <div class="content has-text-justified">
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Soft Mound</h3>
+          <div class="content has-text-centered">
+            <video id="soft-mound-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/soft-mound.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Cobblestone Road</h3>
+          <div class="content has-text-centered">
+            <video id="cobblestone-road-video" controls muted loop playsinline height="100%"
+              style="border-radius: 10px;">
+              <source src="./static/videos/Cobblestone Road.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Obstacles</h3>
+          <div class="content has-text-centered">
+            <video id="Obstacle-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Obstacles.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Spiral Stairs</h3>
+          <div class="content has-text-centered">
+            <video id="spiral-stairs-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Spiral Stairs.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Obstacle Slope</h3>
+          <div class="content has-text-centered">
+            <video id="Obstacle Slope-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Obstacle Slope.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Earthen Slope</h3>
+          <div class="content has-text-centered">
+            <video id="Earthen Slope-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Earthen Slope.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Sand</h3>
+          <div class="content has-text-centered">
+            <video id="Sand-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Sand.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Snowfield</h3>
+          <div class="content has-text-centered">
+            <video id="Snowfield-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Snowfield.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-widescreen">
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-2">Stability</h2>
+          <div class="content has-text-justified">
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Kick</h3>
+          <div class="content has-text-centered">
+            <video id="kick_video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Kick.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Suspended</h3>
+          <div class="content has-text-centered">
+            <video id="suspended_video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Suspended.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Instant Drag</h3>
+          <div class="content has-text-centered">
+            <video id="instant_drag_video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/Instant Drag.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Continuous Drag</h3>
+          <div class="content has-text-centered">
+            <video id="continuous_drag_video" controls muted loop playsinline height="100%"
+              style="border-radius: 10px;">
+              <source src="./static/videos/Continuous Drag.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-widescreen">
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-2">RoboGauge</h2>
+          <div class="content has-text-justified">
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Slope</h3>
+          <div class="content has-text-centered">
+            <video id="RoboGauge-Slope-video" controls muted loop playsinline height="100%"
+              style="border-radius: 10px;">
+              <source src="./static/videos/RoboGauge Slope.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Stairs</h3>
+          <div class="content has-text-centered">
+            <video id="RoboGauge-Stairs-video" controls muted loop playsinline height="100%"
+              style="border-radius: 10px;">
+              <source src="./static/videos/RoboGauge Stairs.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Obstacles</h3>
+          <div class="content has-text-centered">
+            <video id="RoboGauge-Obstacles-video" controls muted loop playsinline height="100%"
+              style="border-radius: 10px;">
+              <source src="./static/videos/RoboGauge Obstacles.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3 class="title is-4 has-text-centered">Wave</h3>
+          <div class="content has-text-centered">
+            <video id="RoboGauge-Wave-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
+              <source src="./static/videos/RoboGauge Wave.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-widescreen">
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-2">Interactive Demo</h2>
+          <div class="content has-text-justified">
+            <p style="text-align: center; color: #666;">
+              <i class="fas fa-gamepad"></i>
+              <strong>Controls:</strong> Click the window below to focus. Use <strong>Joystick
+              </strong> or
+              <strong>WASD/QE</strong> to move.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full">
+
+          <!-- 1. 容器 div：增加 id 和样式 position: relative -->
+          <div id="demo-container"
+            style="position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.2); height: 600px; width: 100%;">
+
+            <!-- 2. 全屏按钮：绝对定位在右上角 -->
+            <button id="fullscreen-btn" class="button is-dark is-rounded"
+              style="position: absolute; top: 15px; left: 15px; z-index: 20; opacity: 0.8; width: 40px; height: 40px; padding: 0; border: none;">
+              <span class="icon is-small" style="margin: 0;">
+                <i class="fas fa-expand"></i>
+              </span>
+            </button>
+
+            <!-- 3. iframe：必须添加 allowfullscreen 属性 -->
+            <iframe id="mujoco-iframe" src="./mujoco_wasm/index.html" width="100%" height="100%" frameborder="0"
+              loading="lazy" style="display: block;"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; gamepad"
+              allowfullscreen></iframe>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-widescreen">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Reinforcement learning has shown strong promise for quadrupedal agile locomotion, even with
+              proprioception-only
+              sensing. In practice, however, sim-to-real gap and reward overfitting in complex terrains can produce
+              policies that
+              fail to transfer, while physical validation remains risky and inefficient. To address
+              these challenges, we introduce a unified framework encompassing a Mixture-of-Experts (MoE) locomotion
+              policy for robust multi-terrain representation with RoboGauge, a predictive assessment
+              suite that quantifies sim-to-real transferability. The MoE policy
+              employs a gated set of specialist experts to decompose latent
+              terrain and command modeling, achieving superior deployment
+              robustness and generalization via proprioception alone. RoboGauge further provides multi-dimensional
+              proprioception-based metrics via sim-to-sim tests over terrains, difficulty levels, and
+              domain randomizations, enabling reliable MoE policy selection
+              without extensive physical trials. Experiments on a Unitree Go2
+              demonstrate robust locomotion on unseen challenging terrains,
+              including snow, sand, stairs, 30 cm obstacles, and 30-degree
+              slopes. In dedicated high-speed tests, the robot reaches 4 m/s and
+              exhibits an emergent narrow-width gait associated with improved
+              stability at high velocity.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-widescreen content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{RSS2026RoboGauge,
+        title = {Toward Reliable Sim-to-Real Predictability for Mixture of Experts-based Quadrupedal Locomotion},
+        author = {Anonymous},
+        journal = {RSS},
+        year = {2026},
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+              code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fullscreenBtn = document.getElementById('fullscreen-btn');
+      const iframeContainer = document.getElementById('demo-container');
+      const iframe = document.getElementById('mujoco-iframe');
+
+      fullscreenBtn.addEventListener('click', () => {
+        // 检查浏览器是否支持全屏 API
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) { /* Safari */
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { /* IE11 */
+          iframe.msRequestFullscreen();
+        }
+      });
+
+      // 监听全屏变化，全屏时让 iframe 获得焦点，以便键盘直接能控制
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement === iframe) {
+          iframe.contentWindow.focus();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
