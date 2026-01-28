@@ -795,7 +795,7 @@ function setupGUI(parentContext) {
     "Cross Stairs": "go2/cross_stairs.xml",
     "Cross Slope": "go2/cross_slope.xml",
     "Stair Series": "go2/stairs.xml",
-    "Race Track": "go2/race_track.xml",
+    "Race Track": "go2/race_track.xml"
   }).name("Select Scene").onChange(reload);
   sceneFolder.open();
   const aiFolder = parentContext.gui.addFolder("AI Controls");
@@ -829,6 +829,11 @@ function setupGUI(parentContext) {
   };
   aiFolder.add(refreshObj, "refresh").name("Refresh AI Control");
   aiFolder.open();
+  const cmdFolder = parentContext.gui.addFolder("Commands");
+  cmdFolder.add(parentContext.inputHandler.max_cmd, "0", 0, 1.5).name("Max Vx (Front)");
+  cmdFolder.add(parentContext.inputHandler.max_cmd, "1", 0, 1).name("Max Vy (Side)");
+  cmdFolder.add(parentContext.inputHandler.max_cmd, "2", 0, 2).name("Max Yaw (Turn)");
+  cmdFolder.open();
   const simFolder = parentContext.gui.addFolder("Simulation");
   const pauseSimulation = setupToggleButton(
     simFolder,
@@ -863,45 +868,11 @@ function setupGUI(parentContext) {
   simFolder.add({ reset: () => {
     resetSimulation();
   } }, "reset").name("Reset");
-  simFolder.add(parentContext.params, "ctrlnoiserate", 0, 2, 0.01).name("Noise rate");
-  simFolder.add(parentContext.params, "ctrlnoisestd", 0, 2, 0.01).name("Noise scale");
   simFolder.open();
   const camFolder = parentContext.gui.addFolder("Camera");
   setupToggleButton(camFolder, parentContext.params, "follow", "Follow Robot");
   setupToggleButton(camFolder, parentContext.params, "showArrows", "Show Velocity Arrows");
   camFolder.open();
-  let textDecoder = new TextDecoder("utf-8");
-  let nullChar = textDecoder.decode(new ArrayBuffer(1));
-  let actuatorFolder = parentContext.gui.addFolder("Actuators");
-  const addActuators = (model, data, params) => {
-    let act_range = model.actuator_ctrlrange;
-    let actuatorGUIs2 = [];
-    for (let i2 = 0; i2 < model.nu; i2++) {
-      if (!model.actuator_ctrllimited[i2]) {
-        continue;
-      }
-      let name = textDecoder.decode(
-        parentContext.model.names.subarray(
-          parentContext.model.name_actuatoradr[i2]
-        )
-      ).split(nullChar)[0];
-      parentContext.params[name] = 0;
-      let actuatorGUI = actuatorFolder.add(parentContext.params, name, act_range[2 * i2], act_range[2 * i2 + 1], 0.01).name(name).listen();
-      actuatorGUIs2.push(actuatorGUI);
-      actuatorGUI.onChange((value) => {
-        data.ctrl[i2] = value;
-      });
-    }
-    return actuatorGUIs2;
-  };
-  let actuatorGUIs = addActuators(parentContext.model, parentContext.data, parentContext.params);
-  parentContext.updateGUICallbacks.push((model, data, params) => {
-    for (let i2 = 0; i2 < actuatorGUIs.length; i2++) {
-      actuatorGUIs[i2].destroy();
-    }
-    actuatorGUIs = addActuators(model, data, parentContext.params);
-  });
-  actuatorFolder.close();
   setupHelpMenu(parentContext);
   document.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
@@ -13008,7 +12979,7 @@ var RobotController = class {
 
 // src/main.js
 var mujoco = await load_mujoco();
-var initialScene = "go2/stairs.xml";
+var initialScene = "go2/cross_stairs.xml";
 mujoco.FS.mkdir("/working");
 mujoco.FS.mount(mujoco.MEMFS, { root: "." }, "/working");
 var MuJoCoDemo = class {

@@ -100,6 +100,45 @@
             /* Bulma's primary blue color */
         }
     </style>
+    <style>
+        .sidebar-nav {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar-nav a {
+            color: #b5b5b5;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding-left: 10px;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            color: #363636;
+            border-left: 2px solid #363636;
+            padding-left: 15px;
+        }
+
+        @media screen and (max-width: 1023px) {
+            .sidebar-nav {
+                display: none;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
     <link rel="icon" href="../static/images/go2.svg">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -110,8 +149,17 @@
 </head>
 
 <body>
-
-    <section class="hero">
+    <nav class="sidebar-nav is-hidden-touch">
+        <a href="#Title">Title</a>
+        <a href="#Indoor">Indoor</a>
+        <a href="#Outdoor">Outdoor</a>
+        <a href="#Stability">Stability</a>
+        <a href="#Comprehensive">Comprehensive Track</a>
+        <a href="#RoboGauge">RoboGauge</a>
+        <a href="#Interactive">Interactive Demo</a>
+        <a href="#Abstract">Abstract</a>
+    </nav>
+    <section class="hero" id="Title">
         <div class="hero-body">
             <div class="container is-widescreen">
                 <div class="columns is-centered">
@@ -209,7 +257,31 @@
                                     </a>
                                 </span>
                             </div>
-
+                            <div class="content has-text-justified is-size-5"
+                                style="max-width: 1100px; margin: 100px auto -20px auto;">
+                                <p>
+                                    We present a comprehensive suite of experiments demonstrating our
+                                    <strong>Mixture-of-Experts (MoE)
+                                        policy</strong>
+                                    on the <strong>Unitree Go2</strong> robot, categorized into <strong>Indoor</strong>,
+                                    <strong>Outdoor</strong>,
+                                    <strong>Stability</strong> and <strong>RoboGauge</strong>
+                                    benchmarks. These
+                                    demos highlight the policy's reliability across diverse terrains and external
+                                    disturbances. We have
+                                    <strong>fully
+                                        open-sourced</strong> our <a href="https://github.com/wty-yy/go2_rl_gym"
+                                        target="_blank">training
+                                        code</a> and <a href="https://github.com/wty-yy/RoboGauge"
+                                        target="_blank">evaluation code</a>. All
+                                    demo
+                                    shown below
+                                    can be reproduced using our provided model and <a
+                                        href="https://github.com/robogauge/code/tree/main/unitree_cpp_deploy"
+                                        target="_blank">deployment
+                                        code</a>.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -217,9 +289,7 @@
         </div>
     </section>
 
-
-    <!-- 仿 ASAP 的视频展示区 Start -->
-    <section class="section">
+    <section class="section" id="Indoor">
         <div class="container is-widescreen">
 
             <div class="columns is-centered has-text-centered">
@@ -281,7 +351,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="Outdoor">
         <div class="container is-widescreen">
 
             <div class="columns is-centered has-text-centered">
@@ -390,7 +460,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="Stability">
         <div class="container is-widescreen">
 
             <div class="columns is-centered has-text-centered">
@@ -452,7 +522,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="Comprehensive">
         <div class="container is-widescreen">
 
             <div class="columns is-centered has-text-centered">
@@ -474,7 +544,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="RoboGauge">
         <div class="container is-widescreen">
 
             <div class="columns is-centered has-text-centered">
@@ -536,22 +606,31 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="Interactive">
         <div class="container is-widescreen">
 
             <div class="columns is-centered has-text-centered">
                 <div class="column is-full-width">
                     <h2 class="title is-2">Interactive Demo</h2>
-                    <div class="content has-text-justified">
-                        <p style="text-align: center; font-size: 1.1em; color: #555;">
-                            Experience our trained MoE policy in real-time using <strong>mujoco_wasm</strong>.
-                            <br>
-                            <span class="icon is-small" style="vertical-align: middle;"><i
-                                    class="fas fa-info-circle"></i></span>
-                            <small>For optimal performance and reliable physics simulation, the demo runs in a
-                                standalone
-                                window.</small>
-                        </p>
+
+                    <div class="content has-text-centered">
+                        <div class="notification is-light"
+                            style="background-color: #f5f5f5; border-radius: 8px; padding: 1.25rem; max-width: 1000px; margin: 0 auto 20px auto;">
+                            <div class="columns is-vcentered is-mobile">
+                                <div class="column is-narrow">
+                                    <span class="icon is-large has-text-info">
+                                        <i class="fas fa-info-circle fa-2x"></i>
+                                    </span>
+                                </div>
+                                <div class="column has-text-left" style="font-size: 0.95rem; line-height: 1.5;">
+                                    <p style="margin-bottom: 0.5rem;">
+                                        Experience our MoE policy using <strong>MuJoCo wasm</strong>.
+                                        For optimal performance, the demo runs in a standalone window.
+                                        Web simulation physics may differ slightly from the native mujoco environment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -567,7 +646,7 @@
                                 <span class="icon">
                                     <i class="fas fa-rocket"></i>
                                 </span>
-                                <span>Launch Interactive Sim</span>
+                                <span>Launch MuJoCo Sim</span>
                             </div>
                         </div>
                     </a>
@@ -580,7 +659,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="Abstract">
         <div class="container is-widescreen">
             <!-- Abstract. -->
             <div class="columns is-centered has-text-centered">
@@ -655,31 +734,6 @@
         </div>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            const iframeContainer = document.getElementById('demo-container');
-            const iframe = document.getElementById('mujoco-iframe');
-
-            fullscreenBtn.addEventListener('click', () => {
-                // 检查浏览器是否支持全屏 API
-                if (iframe.requestFullscreen) {
-                    iframe.requestFullscreen();
-                } else if (iframe.webkitRequestFullscreen) { /* Safari */
-                    iframe.webkitRequestFullscreen();
-                } else if (iframe.msRequestFullscreen) { /* IE11 */
-                    iframe.msRequestFullscreen();
-                }
-            });
-
-            // 监听全屏变化，全屏时让 iframe 获得焦点，以便键盘直接能控制
-            document.addEventListener('fullscreenchange', () => {
-                if (document.fullscreenElement === iframe) {
-                    iframe.contentWindow.focus();
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
