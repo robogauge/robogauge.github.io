@@ -31,6 +31,75 @@
     <link rel="stylesheet" href="../static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link rel="stylesheet" href="../static/css/index.css">
+    <style>
+        /* Interactive Demo Link Styles */
+        .demo-link-wrapper {
+            position: relative;
+            display: block;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .demo-link-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .demo-link-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: filter 0.3s ease;
+        }
+
+        .demo-link-wrapper:hover img {
+            filter: brightness(0.9);
+        }
+
+        /* Play Button Overlay */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .demo-link-wrapper:hover .play-overlay {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .play-button {
+            background: rgba(255, 255, 255, 0.95);
+            color: #363636;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .demo-link-wrapper:hover .play-button {
+            transform: scale(1.1);
+            background: #ffffff;
+            color: #3273dc;
+            /* Bulma's primary blue color */
+        }
+    </style>
     <link rel="icon" href="../static/images/go2.svg">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -474,38 +543,38 @@
                 <div class="column is-full-width">
                     <h2 class="title is-2">Interactive Demo</h2>
                     <div class="content has-text-justified">
-                        <p style="text-align: center; color: #666;">
-                            <i class="fas fa-gamepad"></i>
-                            <strong>Controls:</strong> Click the window below to focus. Use <strong>Joystick
-                            </strong> or
-                            <strong>WASD/QE</strong> to move.
+                        <p style="text-align: center; font-size: 1.1em; color: #555;">
+                            Experience our trained MoE policy in real-time using <strong>mujoco_wasm</strong>.
+                            <br>
+                            <span class="icon is-small" style="vertical-align: middle;"><i
+                                    class="fas fa-info-circle"></i></span>
+                            <small>For optimal performance and reliable physics simulation, the demo runs in a
+                                standalone
+                                window.</small>
                         </p>
                     </div>
                 </div>
             </div>
 
             <div class="columns is-centered">
-                <div class="column is-full">
+                <div class="column is-10">
 
-                    <!-- 1. 容器 div：增加 id 和样式 position: relative -->
-                    <div id="demo-container"
-                        style="position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.2); height: 600px; width: 100%;">
+                    <a href="./mujoco_wasm/index.html" target="_blank" class="demo-link-wrapper">
+                        <img src="./static/images/mujoco.png" alt="Go2 Robot Simulation Interactive Demo">
 
-                        <!-- 2. 全屏按钮：绝对定位在右上角 -->
-                        <button id="fullscreen-btn" class="button is-dark is-rounded"
-                            style="position: absolute; top: 15px; left: 15px; z-index: 20; opacity: 0.8; width: 40px; height: 40px; padding: 0; border: none;">
-                            <span class="icon is-small" style="margin: 0;">
-                                <i class="fas fa-expand"></i>
-                            </span>
-                        </button>
+                        <div class="play-overlay">
+                            <div class="play-button">
+                                <span class="icon">
+                                    <i class="fas fa-rocket"></i>
+                                </span>
+                                <span>Launch Interactive Sim</span>
+                            </div>
+                        </div>
+                    </a>
 
-                        <!-- 3. iframe：必须添加 allowfullscreen 属性 -->
-                        <iframe id="mujoco-iframe" src="../mujoco_wasm/index.html" width="100%" height="100%"
-                            frameborder="0" loading="lazy" style="display: block;"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; gamepad"
-                            allowfullscreen></iframe>
-                    </div>
-
+                    <p class="has-text-centered is-size-7 mt-3 has-text-grey">
+                        <i class="fas fa-gamepad"></i> Controls: <strong>Joystick</strong> or <strong>WASD/QE</strong>
+                    </p>
                 </div>
             </div>
         </div>
