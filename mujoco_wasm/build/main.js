@@ -791,9 +791,11 @@ function setupGUI(parentContext) {
   const sceneFolder = parentContext.gui.addFolder("Scene");
   let reload = reloadFunc.bind(parentContext);
   sceneFolder.add(parentContext.params, "scene", {
+    "Flat": "go2/flat.xml",
+    "Cross Stairs": "go2/cross_stairs.xml",
+    "Cross Slope": "go2/cross_slope.xml",
+    "Stair Series": "go2/stairs.xml",
     "Race Track": "go2/race_track.xml",
-    "Stairs": "go2/stairs.xml",
-    "Flat": "go2/flat.xml"
   }).name("Select Scene").onChange(reload);
   sceneFolder.open();
   const aiFolder = parentContext.gui.addFolder("AI Controls");
@@ -1140,18 +1142,12 @@ async function loadSceneFromURL(mujoco2, filename, parent) {
           rgbaArray[p2 * 4 + 3] = channels > 3 ? texData[offset + (p2 * channels + 3)] : 255;
         }
         texture = new THREE2.DataTexture(rgbaArray, width, height, THREE2.RGBAFormat, THREE2.UnsignedByteType);
-        if (texId == 2) {
-          texture.repeat = new THREE2.Vector2(50, 50);
-          texture.wrapS = THREE2.RepeatWrapping;
-          texture.wrapT = THREE2.RepeatWrapping;
-        } else {
-          texture.repeat = new THREE2.Vector2(
-            model.mat_texrepeat[model.geom_matid[g2] * 2 + 0],
-            model.mat_texrepeat[model.geom_matid[g2] * 2 + 1]
-          );
-          texture.wrapS = THREE2.RepeatWrapping;
-          texture.wrapT = THREE2.RepeatWrapping;
-        }
+        texture.repeat = new THREE2.Vector2(
+          model.mat_texrepeat[model.geom_matid[g2] * 2 + 0],
+          model.mat_texrepeat[model.geom_matid[g2] * 2 + 1]
+        );
+        texture.wrapS = THREE2.RepeatWrapping;
+        texture.wrapT = THREE2.RepeatWrapping;
         texture.needsUpdate = true;
       }
     }
@@ -1324,6 +1320,8 @@ async function downloadExampleScenesFolder(mujoco2) {
     "go2/flat.xml",
     "go2/go2.xml",
     "go2/race_track.xml",
+    "go2/cross_stairs.xml",
+    "go2/cross_slope.xml",
     "go2/stairs.xml",
     "go2/assets/base_0.obj",
     "go2/assets/base_1.obj",
@@ -1350,7 +1348,11 @@ async function downloadExampleScenesFolder(mujoco2) {
     "go2/dae/hip.dae",
     "go2/dae/thigh.dae",
     "go2/dae/thigh_mirror.dae",
-    "go2/urdf/go2.urdf"
+    "go2/urdf/go2.urdf",
+    "go2/imgs/label_1.png",
+    "go2/imgs/label_4.png",
+    "go2/imgs/label_7.png",
+    "go2/imgs/label_10.png"
   ];
   let requests = allFiles.map((url) => fetch("./assets/scenes/" + url));
   let responses = await Promise.all(requests);
@@ -2332,7 +2334,7 @@ var InputHandler = class {
   constructor() {
     this.cmd_vel = new Float32Array([0, 0, 0]);
     this.current_input = new Float32Array([0, 0, 0]);
-    this.max_cmd = [2, 1, 2];
+    this.max_cmd = [1.5, 1, 2];
     this.smoothing_step = 0.02;
     this.keys = {
       w: false,
@@ -13043,10 +13045,10 @@ var MuJoCoDemo = class {
       help: false,
       ctrlnoiserate: 0,
       ctrlnoisestd: 0,
-      follow: false,
+      follow: true,
       enableRL: false,
-      showArrows: false,
-      model: "ppo"
+      showArrows: true,
+      model: "moects"
     };
     this.mujoco_time = 0;
     this.bodies = {};
