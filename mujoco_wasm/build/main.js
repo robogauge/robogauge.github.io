@@ -13017,7 +13017,7 @@ var MuJoCoDemo = class {
       ctrlnoiserate: 0,
       ctrlnoisestd: 0,
       follow: true,
-      enableRL: false,
+      enableRL: true,
       showArrows: true,
       model: "moects"
     };
@@ -13037,6 +13037,9 @@ var MuJoCoDemo = class {
     [this.model, this.data, this.bodies, this.lights] = await loadSceneFromURL(mujoco, initialScene, this);
     this.robotController.setPhysics(this.model, this.data);
     this.robotController.resetPose();
+    if (this.params.enableRL) {
+      await this.toggleRL(true);
+    }
     this.gui = new g();
     setupGUI(this);
   }
