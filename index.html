@@ -110,6 +110,7 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      width: 140px;
     }
 
     .sidebar-nav a {
@@ -138,6 +139,28 @@
     html {
       scroll-behavior: smooth;
     }
+
+    @media screen and (min-width: 1024px) and (max-width: 1700px) {
+    
+    .container.is-widescreen {
+      margin-left: 200px !important; 
+      margin-right: 200px !important;
+      width: auto !important; 
+      max-width: 100% !important; 
+    }
+
+    .content.has-text-justified {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      max-width: 100% !important;
+    }
+    
+    .column.is-four-fifths {
+      width: 100% !important;
+      flex: none !important;
+      max-width: 100% !important;
+    }
+  }
   </style>
   <link rel="icon" href="./static/images/go2.svg">
 
@@ -150,6 +173,12 @@
 
 <body>
   <nav class="sidebar-nav is-hidden-touch">
+    <div class="menu-label" style="display: flex; align-items: center; padding: 10px; font-weight: bold; border-bottom: 1px solid #eee; margin-bottom: 10px;">
+      <span class="icon" style="margin-right: 8px;">
+        <i class="fas fa-list-ul"></i> </span>
+      <span>CONTENTS</span>
+    </div>
+
     <a href="#Title">Title</a>
     <a href="#Indoor">Indoor</a>
     <a href="#Outdoor">Outdoor</a>
@@ -173,7 +202,7 @@
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <a href="" class="external-link button is-normal is-rounded is-dark" target="_blank">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -183,7 +212,7 @@
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a href="https://github.com/robogauge/code/tree/main/go2_rl_gym"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -193,7 +222,7 @@
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a href="https://github.com/robogauge/code/tree/main/RoboGauge"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -203,7 +232,7 @@
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a href="https://github.com/robogauge/code/tree/main/unitree_cpp_deploy"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -214,21 +243,33 @@
               <div class="content has-text-justified is-size-5"
                 style="max-width: 1100px; margin: 100px auto -20px auto;">
                 <p>
-                  We present a comprehensive suite of experiments demonstrating our <strong>Mixture-of-Experts (MoE)
+                  We present a comprehensive suite of experiments demonstrating our <strong>Mixture-of-Experts
                     policy</strong>
-                  on the <strong>Unitree Go2</strong> robot, categorized into <strong>Indoor</strong>,
-                  <strong>Outdoor</strong>,
-                  <strong>Stability</strong> and <strong>RoboGauge</strong>
-                  benchmarks. These
-                  demos highlight the policy's reliability across diverse terrains and external disturbances. We have
-                  <strong>fully
-                    open-sourced</strong> our <a href="https://github.com/robogauge/code/tree/main/go2_rl_gym" target="_blank">training
-                    code</a> and <a href="https://github.com/robogauge/code/tree/main/RoboGauge" target="_blank">evaluation code</a>. All
-                  demo
-                  shown below
-                  can be reproduced using our provided model and <a
-                    href="https://github.com/robogauge/code/tree/main/unitree_cpp_deploy" target="_blank">deployment
-                    code</a>.
+                  on the <a href="https://www.unitree.com/go2/" target="_blank"><strong>Unitree Go2-Edu</strong></a> quadruped,
+                  <strong>utilizing only proprioception without any external sensor.</strong>
+                </p>
+                <p>
+                  The demos below is divided into
+                  <a href="./index.html#Indoor"><strong>Indoor</strong></a>,
+                  <a href="./index.html#Outdoor"><strong>Outdoor</strong></a>,
+                  <a href="./index.html#Stability"><strong>Stability</strong></a> and
+                  <a href="./index.html#RoboGauge"><strong>RoboGauge</strong></a> evaluation,
+                  highlight the policy's reliability across diverse terrains and external disturbances.
+                  We also provide an <a href="./index.html#Interactive"><strong>interactive web demo</strong></a> for you to experience our model easily.
+                </p>
+                <p>
+                  We have
+                  <strong>fully open-sourced</strong> our
+                  <a href="https://github.com/robogauge/code/tree/main/go2_rl_gym" target="_blank">
+                    <b>go2_rl_gym (training)</b>
+                  </a> and
+                  <a href="https://github.com/robogauge/code/tree/main/RoboGauge" target="_blank">
+                    <b>RoboGauge (evaluation)</b>
+                  </a>.
+                  All the demos shown below can be reproduced using our provided model in
+                  <a href="https://github.com/robogauge/code/tree/main/unitree_cpp_deploy" target="_blank">
+                    <b>unitree_cpp_deploy (deployment)</b>
+                  </a>.
                 </p>
               </div>
             </div>
@@ -334,7 +375,7 @@
       <div class="columns is-centered">
 
         <div class="column">
-          <h3 class="title is-4 has-text-centered">Obstacles</h3>
+          <h3 class="title is-4 has-text-centered">Obstacles <small>(Height 30 cm)</small></h3>
           <div class="content has-text-centered">
             <video id="Obstacle-video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
               <source src="./static/videos/Obstacles.mp4" type="video/mp4">
@@ -435,7 +476,7 @@
       <div class="columns is-centered">
 
         <div class="column">
-          <h3 class="title is-4 has-text-centered">Instant Drag</h3>
+          <h3 class="title is-4 has-text-centered">Instant Drag <small>(85~100N)</small></h3>
           <div class="content has-text-centered">
             <video id="instant_drag_video" controls muted loop playsinline height="100%" style="border-radius: 10px;">
               <source src="./static/videos/Instant Drag.mp4" type="video/mp4">
@@ -444,7 +485,7 @@
         </div>
 
         <div class="column">
-          <h3 class="title is-4 has-text-centered">Continuous Drag</h3>
+          <h3 class="title is-4 has-text-centered">Continuous Drag <small>(25~40N)</small></h3>
           <div class="content has-text-centered">
             <video id="continuous_drag_video" controls muted loop playsinline height="100%"
               style="border-radius: 10px;">
@@ -460,11 +501,21 @@
 
   <section class="section" id="RoboGauge">
     <div class="container is-widescreen">
-
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
           <h2 class="title is-2">RoboGauge</h2>
-          <div class="content has-text-justified">
+          <div class="content has-text-justified is-size-5"
+          style="max-width: 1100px; margin: auto auto auto auto;">
+            <p>
+              <a href="https://github.com/robogauge/code/tree/main/RoboGauge" target="_blank"><b>RoboGauge</b></a>
+              is a tool for evaluating motion control in reinforcement learning motion policies.
+              Its goal is to measure 6 metrics of the policy in Sim2Sim (IsaacGym to MuJoCo) so that we can partially predict the performance of Sim2Real,
+              thereby reducing the risk of damaging real hardware.
+              Evaluation inclues 5 different terrains (flat, slope, stairs, obstacles, wave) and 10 difficulty levels (without flat).
+            </p>
+            <p>
+              Below, we show the model's tracking performance at 2 different levels with 1 m/s command velocity.
+            </p>
           </div>
         </div>
       </div>
@@ -539,7 +590,7 @@
                   <p style="margin-bottom: 0.5rem;">
                     Experience our MoE policy using <strong>MuJoCo wasm</strong>.
                     For optimal performance, the demo runs in a standalone window.
-                    Web simulation physics may differ slightly from the native mujoco environment.
+                    Web simulation physics may differ slightly from the native MuJoCo environment.
                   </p>
                 </div>
               </div>
