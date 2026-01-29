@@ -2305,7 +2305,7 @@ var InputHandler = class {
   constructor() {
     this.cmd_vel = new Float32Array([0, 0, 0]);
     this.current_input = new Float32Array([0, 0, 0]);
-    this.max_cmd = [1.5, 1, 2];
+    this.max_cmd = [1.0, 1.0, 2.0];
     this.smoothing_step = 0.02;
     this.keys = {
       w: false,
