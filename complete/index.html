@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="description"
-        content="Toward Reliable Sim-to-Real Predictability for Mixture of Experts-based Quadrupedal Locomotion">
+        content="Toward Reliable Sim-to-Real Predictability for MoE-based Robust Quadrupedal Locomotion">
     <meta name="keywords" content="RoboGauge, MoE">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Toward Reliable Sim-to-Real Predictability for Mixture of Experts-based Quadrupedal Locomotion</title>
+    <title>Toward Reliable Sim-to-Real Predictability for MoE-based Robust Quadrupedal Locomotion</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -185,6 +185,7 @@
         <a href="#Comprehensive">Comprehensive Track</a>
         <a href="#RoboGauge">RoboGauge</a>
         <a href="#Interactive">Interactive Demo</a>
+        <a href="#Framework">Framework</a>
         <a href="#Abstract">Abstract</a>
     </nav>
     <section class="hero" id="Title">
@@ -192,9 +193,9 @@
             <div class="container is-widescreen">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">Toward Reliable Sim-to-Real Predictability for Mixture
-                            of
-                            Experts-based Quadrupedal Locomotion</h1>
+                        <h1 class="title is-1 publication-title">
+                            Toward Reliable Sim-to-Real Predictability for MoE-based Robust Quadrupedal Locomotion
+                        </h1>
                         <div class="is-size-5 publication-authors">
                             <span class="author-block">
                                 <a href="https://wty-yy.github.io">Tianyang Wu</a><sup>1</sup>,</span>
@@ -208,28 +209,32 @@
                                     Yang</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
-                                <a>Xinyang Sui</a><sup>1</sup>,
+                                <a href="https://openreview.net/profile?id=~Xinyang_Sui1">Xinyang Sui</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
                                 <a href="https://github.com/EzioPeter">Jiayi Xie</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
+                                <a href="http://www.aiar.xjtu.edu.cn/info/1046/2233.htm">Xingyu Chen</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
                                 <a href="http://www.aiar.xjtu.edu.cn/info/1046/3904.htm">Zeyang Liu</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
-                                <a href="https://gr.xjtu.edu.cn/en/web/zeuslan/information">Xuguang Lan</a><sup>1</sup>
+                                <a href="https://gr.xjtu.edu.cn/en/web/zeuslan/information">Xuguang Lan</a><sup>1*</sup>
                             </span>
                         </div>
 
                         <div class="is-size-5 publication-authors">
-                            <span class="author-block"><sup>1</sup>Xi'an Jiaotong University</span>
+                            <span class="author-block"><sup>1</sup>Xi'an Jiaotong University</span>,
+                            <span class="author-block"><sup>*</sup>Corresponding Author</span>
                         </div>
 
                         <div class="column has-text-centered">
                             <div class="publication-links">
                                 <!-- PDF Link. -->
                                 <span class="link-block">
-                                    <a href="" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                                    <a href="../static/files/arxiv.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank">
                                         <span class="icon">
                                             <i class="fas fa-file-pdf"></i>
                                         </span>
@@ -560,11 +565,18 @@
 
     <section class="section" id="Comprehensive">
         <div class="container is-widescreen">
-
             <div class="columns is-centered has-text-centered">
                 <div class="column is-full-width">
                     <h2 class="title is-2">Comprehensive Track</h2>
                     <div class="content has-text-justified">
+                        <div class="content has-text-justified is-size-5" style="max-width: 1100px; margin: auto auto auto auto;">
+                        <p>
+                            In 2025, our model won first place in the
+                            <a href="https://tencentarena.com/aiarena/zh/match/open-competition-2025/open-competition-2025-3" target="_blank">
+                                inaugural Global Embodied AI Reinforcement Learning Locomotion Challenge
+                            </a>
+                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -699,6 +711,26 @@
 
                     <p class="has-text-centered is-size-7 mt-3 has-text-grey">
                         <i class="fas fa-gamepad"></i> Controls: <strong>Joystick</strong> or <strong>WASD/QE</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="Framework">
+    <div class="container is-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Framework</h2>
+          <img src="../static/images/our_framework.jpg" alt="Our Framework" style="border-radius: 10px; margin-bottom: 20px;">
+          <div class="content has-text-justified">
+            <p>
+              Our proposed framework integrates a <b>Mixture-of-Experts</b> architecture
+              for terrain and command representation with the
+              <b>RoboGauge</b> assessment suite to quantify sim-to-real transferability through sim-to-sim metrics.
+              This closed-loop design enables reliable policy selection to
+              facilitate robust deployment for agile locomotion across diverse
+              challenging environments based solely on proprioception.
                     </p>
                 </div>
             </div>
@@ -713,28 +745,21 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            Reinforcement learning has shown strong promise for quadrupedal agile locomotion, even with
-                            proprioception-only
-                            sensing. In practice, however, sim-to-real gap and reward overfitting in complex terrains
-                            can produce
-                            policies that
-                            fail to transfer, while physical validation remains risky and inefficient. To address
-                            these challenges, we introduce a unified framework encompassing a Mixture-of-Experts (MoE)
-                            locomotion
-                            policy for robust multi-terrain representation with RoboGauge, a predictive assessment
-                            suite that quantifies sim-to-real transferability. The MoE policy
-                            employs a gated set of specialist experts to decompose latent
-                            terrain and command modeling, achieving superior deployment
-                            robustness and generalization via proprioception alone. RoboGauge further provides
-                            multi-dimensional
-                            proprioception-based metrics via sim-to-sim tests over terrains, difficulty levels, and
-                            domain randomizations, enabling reliable MoE policy selection
-                            without extensive physical trials. Experiments on a Unitree Go2
-                            demonstrate robust locomotion on unseen challenging terrains,
-                            including snow, sand, stairs, 30 cm obstacles, and 30-degree
-                            slopes. In dedicated high-speed tests, the robot reaches 4 m/s and
-                            exhibits an emergent narrow-width gait associated with improved
-                            stability at high velocity.
+              Reinforcement learning has shown strong promise for quadrupedal agile locomotion,
+              even with proprioception-only sensing. In practice, however,
+              sim-to-real gap and reward overfitting in complex terrains can produce policies that fail to transfer,
+              while physical validation remains risky and inefficient.
+              To address these challenges, we introduce a unified framework encompassing a Mixture-of-Experts (MoE)
+              locomotion policy for robust multi-terrain representation with RoboGauge,
+              a predictive assessment suite that quantifies sim-to-real transferability.
+              The MoE policy employs a gated set of specialist experts to decompose latent terrain and command modeling,
+              achieving superior deployment robustness and generalization via proprioception alone.
+              RoboGauge further provides multi-dimensional proprioception-based metrics via sim-to-sim tests over terrains,
+              difficulty levels, and domain randomizations, enabling reliable MoE policy selection without extensive physical trials.
+              Experiments on a Unitree Go2 demonstrate robust locomotion on unseen challenging terrains,
+              including snow, sand, stairs, slopes, and 30 cm obstacles.
+              In dedicated high-speed tests, the robot reaches 4 m/s and exhibits an emergent narrow-width gait
+              associated with improved stability at high velocity.
                         </p>
                     </div>
                 </div>
@@ -745,11 +770,32 @@
     </section>
 
 
+    <section class="section" id="Acknowledgments">
+        <div class="container is-widescreen">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Acknowledgments</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Thanks to <a href="https://tencentarena.com/aiarena">Tencent AI Arena</a> and
+                            <a href="https://www.unitree.com/">Unitree Robotics</a> for providing the
+                            Go2 quadruped for the initial experiments.
+                        </p>
+                        <p>
+                            Thanks to <a href="https://github.com/Jhin87">Guangsheng Li</a> for providing the training code for Baseline DreamWaQ.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <section class="section" id="BibTeX">
         <div class="container is-widescreen content">
             <h2 class="title">BibTeX</h2>
             <pre><code>@article{wu2026RoboGauge,
-        title = {Toward Reliable Sim-to-Real Predictability for Mixture of Experts-based Quadrupedal Locomotion},
+        title = {Toward Reliable Sim-to-Real Predictability for MoE-based Robust Quadrupedal Locomotion},
         author = {Tianyang Wu, Hanwei Guo, Yuhang Wang, Junshu Yang, Xinyang Sui, Jiayi Xie, Zeyang Liu, Xuguang Lan},
         journal = {RSS},
         year = {2026},
